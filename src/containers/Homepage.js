@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TextInput, AsyncStorage , Card } from 'react-native';
 import { Content, Button, Icon, Item, Input, Label, Form, Header, Container, Title, Body, Right, Center, Left } from 'native-base';
-import { logout } from '../../utils'
 import { Font, AppLoading } from "expo";
 import { Actions } from 'react-native-router-flux';
 import { ScrollableSubsidies } from '../components';
@@ -13,16 +12,24 @@ export default class Homepage extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            
+            data: {
+                start: 10,
+                limit: 5,
+                zone: [],
+                state: [],
+                city: [],
+                industry: [],
+                term: "",
+                block: '',
+                subindustry: "",
+                scale: "",
+                type: ''
+            },
+            searchTerm:'',
             loading: true
          };
-    }
+    } 
 
-    onLogout = () => {
-        logout();
-        Actions.Login()
-
-    }
     async componentWillMount() {
         await Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -33,10 +40,11 @@ export default class Homepage extends React.Component {
     }
 
     render() {
-        if (this.state.loading) {
+        let { data, loading, searchTerm} =this.state 
+        if (loading) {
             return (
                 <View>
-                    <AppLoading />
+                    <AppLoading  style={{marginTop:0.45*height}}/>
                 </View>
             );
         }
@@ -44,11 +52,14 @@ export default class Homepage extends React.Component {
             <View style={styles.container}>
                 <Header style={{ backgroundColor: '#1facc0', justifyContent: "flex-start", height: 0.2 * height, justifyContent: "center", alignItems: "center" }} >
                     <Body style={styles.body}>
-                        <Title style={styles.titlesubsidies}>My subsidies</Title>
+                       <Title style={styles.titlesubsidies}>My subsidies</Title>
+                       
                     </Body>
                 </Header>
-                     <ScrollableSubsidies />
-                <Button success onPress={this.onLogout}><Text>Logout</Text></Button>
+                     <ScrollableSubsidies
+                        data={ data }
+                        searchTerm={ searchTerm }
+                      />
             </View>
         )
     }
@@ -61,11 +72,15 @@ const styles = StyleSheet.create({
     body: {
         alignItems: 'center',
         display: 'flex',
-        justifyContent: "center",
+        justifyContent: "center"
     },
     titlesubsidies: {
         color: "#fff",
         fontSize: 18
+    },
+    logout:{
+        alignContent: 'flex-end',
+        justifyContent: "flex-end"
     }
 })
 

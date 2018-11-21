@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "swipe-test",
+    "name": "Incentive Pro",
     "description": "This project is really great. san projuct native-base with android",
-    "slug": "swipe-test",
+    "slug": "Incentive-Pro",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": ["ios", "android"],
@@ -24,7 +24,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.techindustan.RNBP"
+      "package": "com.techindustan.IncentivePro"
     }  
   }
 }

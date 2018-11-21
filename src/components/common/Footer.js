@@ -2,8 +2,20 @@ import React, { PureComponent } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Footer, FooterTab, Button, Icon } from 'native-base';
+import { logout  } from '../../../utils';
 
 export default class FooterComponent extends PureComponent {
+constructor(props){
+    super(props);
+    this.state ={
+
+    }
+}
+    onLogout = () => {
+        logout();
+        Actions.Login()
+
+    }
     render() {
         return (
             <Footer>
@@ -30,6 +42,14 @@ export default class FooterComponent extends PureComponent {
                             height: 25,
                             width: 25
                         }} source={require('../../../assets/settings_s.png')} />
+
+                    </Button>
+
+                    <Button onPress= { this.onLogout }>
+                        <Image style={{
+                            height: 25,
+                            width: 25
+                        }} source={require('../../../assets/logout.png')} />
 
                     </Button>
                 </FooterTab>
