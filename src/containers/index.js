@@ -1,3 +1,5 @@
-export { default as Main } from './Main';
-export { default as Login } from './Login';
-export { default as WelcomePage } from './WelcomePage';
+
+export { default as Login } from './Auth/Login'
+export { default as Register } from './Auth/Register'
+export { default as Welcome } from './Welcome';
+export { default as Homepage } from './Homepage'

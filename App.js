@@ -2,23 +2,21 @@ import React from 'react';
 import { Main } from './src/containers';
 import { Container, Header, Body } from 'native-base';
 import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { Provider } from 'react-redux'
 import { Constants } from 'expo';
-import AppRoutes from './src/routes';
+import  store  from './src/store'
+import Routes from './src/Routes';
 
 export default class App extends React.Component {
   render() {
 
     return (
-      <Container style={styles.container}>
-        <AppRoutes />
+      <Container>
+        <Provider store={store}>
+          <Routes />
+        </Provider>
       </Container>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: Constants.statusBarHeight,
-    flex: 1,
-  }
-});
